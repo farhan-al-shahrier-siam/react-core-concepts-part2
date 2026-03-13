@@ -1,6 +1,12 @@
 import "./App.css";
 import Counter from "./Counter";
 import Batsman from "./Batsman";
+import Users from "./Users"
+import { Suspense } from "react";
+
+
+const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users")
+.then(res => res.json())
 
 function App() {
     function handleClick() {
@@ -13,6 +19,10 @@ function App() {
     };
     return (
         <>
+
+            <Suspense fallback={<h1>Data Loading...</h1>}>
+                <Users fetchUsers = {fetchUsers}></Users>
+            </Suspense>
 
             <Batsman></Batsman>
 
